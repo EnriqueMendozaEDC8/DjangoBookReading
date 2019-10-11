@@ -1,0 +1,81 @@
+{% comment %} 
+<html>
+<head>
+     <title>Contactanos</title>
+</head>
+<body>
+     <h1>Contactanos</h1>
+{% if errors %}
+<ul>  
+     {% for error in errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="/contactos/" method="post">{% csrf_token %}
+    <p>Asunto: <input type="text" name="asunto" value="{{ asunto }}"></p>
+    <p>E­mail (opcional): <input type="text" name="email" value="{{ email }}"></p>
+    <p>Mensaje: <textarea name="mensaje" rows="10" cols="50"  
+    value="{{ mensaje }}"></textarea></p>  <input type="submit" value="Enviar">
+</form>
+</body>
+</html> 
+{% endcomment %}
+<html>
+<head>
+    <title>Contactanos</title>
+</head>
+<body>
+    <style type="text/css">
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+        }
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font­size: 10px; 
+            margin: 0 0 3px; 
+            padding: 4px 5px; 
+        }
+    </style>
+{% comment %}     
+    <h1>Contactanos</h1>
+    {% if form.errors %}
+        <p style="color: red">Por favor corrige lo siguiente:</p>
+    {% endif %}
+    <form action="" method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Enviar">
+    </form>
+</body> 
+{% endcomment %}
+    <h1>Contactanos</h1>
+    {% if form.errors %}
+        <p style="color: red;">
+        Por favor corrige lo siguiente:
+        </p>
+    {% endif %}
+    <form action="" method="post">{% csrf_token %}
+        <div class="field">
+            {{ form.asunto.errors }}
+                <label for="id_asunto">Asunto:</label>
+            {{ form.asunto }}
+        </div>
+        <div class="field">
+            {{ form.email.errors }}
+               <label for="id_email">E­mail:</label>
+           {{ form.email }}
+        </div>
+        <div class="field">
+            {{ form.mensaje.errors }}
+                <label for="id_mensaje">Mensaje:</label>
+            {{ form.mensaje }}
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
